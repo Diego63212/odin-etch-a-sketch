@@ -1,7 +1,6 @@
 const btnChange = document.querySelector('#btn-change');
 const btnReset = document.querySelector('#btn-reset');
 const pixelContainer = document.querySelector('#pixel-container');
-const containerSize = pixelContainer.offsetHeight;
 let pixelCount = 16;
 
 // Listen to bubbling mouseover event for better performance
@@ -26,7 +25,7 @@ function pixelHighlight(e) {
     if (e.target.classList.contains('pixel') && e.target.style.backgroundColor == '') {
         e.target.style.backgroundColor = 'rgb('+randomRGB()+','+randomRGB()+', '+randomRGB()+')';
     } else if (e.target.classList.contains('pixel')) {
-        darkenColor(e)
+        darkenColor(e);
     }
 }
 // Divides individual colors to darken them over reiterated interactions
@@ -43,9 +42,8 @@ function darkenColor(e) {
 let fragment = document.createDocumentFragment();
 
 function drawPixels(amount) {
-    let pixelSize = Math.floor(containerSize / amount) + 'px';
+    let pixelSize = 100 / amount + '%';
 
-    pixelContainer.replaceChildren('')
     for (let i = 0; i < amount * amount; i++) {
         const pixelDiv = document.createElement('div');
         pixelDiv.style.height = pixelSize;
@@ -56,4 +54,4 @@ function drawPixels(amount) {
     pixelContainer.replaceChildren(fragment);
 }
 
-drawPixels(pixelCount)
+drawPixels(pixelCount);
