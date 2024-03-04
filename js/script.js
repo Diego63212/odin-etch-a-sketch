@@ -6,7 +6,7 @@ let pixelCount = 16;
 pixelContainer.addEventListener('mouseover', pixelHighlight);
 btnChange.addEventListener('click', () => {
     // Set minimum to 1 and maximum of 100 to conserve performance
-    let userPixelCount = Math.max(Math.min(prompt('How many pixels per side?'), 100), 1);
+    let userPixelCount = Math.max(Math.min(prompt('How many pixels per side? (Max = 100)'), 100), 1);
     drawPixels(userPixelCount);
 })
 
