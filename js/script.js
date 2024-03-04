@@ -10,9 +10,13 @@ btnChange.addEventListener('click', () => {
     drawPixels(userPixelCount);
 })
 
+function randomRGB() {
+    return Math.floor(Math.random() * 255);
+}
+
 function pixelHighlight(e) {
     if (e.target.classList.contains('pixel')) {
-        e.target.style.backgroundColor = 'yellow';
+        e.target.style.backgroundColor = 'rgb('+randomRGB()+','+randomRGB()+', '+randomRGB()+')';
     }
 }
 
