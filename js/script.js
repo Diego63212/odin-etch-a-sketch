@@ -1,13 +1,20 @@
 const btnChange = document.querySelector('#btn-change');
+const btnReset = document.querySelector('#btn-reset');
 const pixelContainer = document.querySelector('#pixel-container');
 const containerSize = pixelContainer.offsetHeight;
 let pixelCount = 16;
 
+// Listen to bubbling mouseover event for better performance
 pixelContainer.addEventListener('mouseover', pixelHighlight);
+
 btnChange.addEventListener('click', () => {
     // Set minimum to 1 and maximum of 100 to conserve performance
-    let userPixelCount = Math.max(Math.min(prompt('How many pixels per side? (Max = 100)'), 100), 1);
-    drawPixels(userPixelCount);
+    pixelCount = Math.max(Math.min(prompt('How many pixels per side? (Maximum is 100)', '16'), 100), 1);
+    drawPixels(pixelCount);
+})
+
+btnReset.addEventListener('click', () => {
+    drawPixels(pixelCount);
 })
 
 function randomRGB() {
@@ -32,7 +39,7 @@ function darkenColor(e) {
     e.target.style.backgroundColor = `rgb(${colorRed}, ${colorGreen}, ${colorBlue})`;
 }
 
-// Use document fragment
+// Use document fragment for extra performance
 let fragment = document.createDocumentFragment();
 
 function drawPixels(amount) {
