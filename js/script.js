@@ -25,7 +25,7 @@ function pixelHighlight(e) {
     // Gives a random color only to unmodified pixel class elements
     if (e.target.classList.contains('pixel') && e.target.style.backgroundColor == '') {
         e.target.style.backgroundColor = 'rgb('+randomRGB()+','+randomRGB()+', '+randomRGB()+')';
-    } else {
+    } else if (e.target.classList.contains('pixel')) {
         darkenColor(e)
     }
 }
@@ -43,7 +43,7 @@ function darkenColor(e) {
 let fragment = document.createDocumentFragment();
 
 function drawPixels(amount) {
-    let pixelSize = containerSize / amount + 'px';
+    let pixelSize = Math.floor(containerSize / amount) + 'px';
 
     pixelContainer.replaceChildren('')
     for (let i = 0; i < amount * amount; i++) {
