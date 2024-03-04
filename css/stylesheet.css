@@ -1,0 +1,28 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: rgb(15, 15, 31);
+    padding: 16px;
+}
+
+.container {
+    width: 960px;
+    height: 960px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    align-content: flex-start;
+}
+
+.pixel {
+    border: 1px solid red;
+    background-color: black;
+}
+
+/* .pixel:hover {
+    background-color: yellow;
+} */
