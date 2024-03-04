@@ -1,4 +1,4 @@
-const btnChange = document.querySelector('#btn-change')
+const btnChange = document.querySelector('#btn-change');
 const pixelContainer = document.querySelector('#pixel-container');
 const containerSize = pixelContainer.offsetHeight;
 let pixelCount = 16;
@@ -15,9 +15,21 @@ function randomRGB() {
 }
 
 function pixelHighlight(e) {
-    if (e.target.classList.contains('pixel')) {
+    // Gives a random color only to unmodified pixel class elements
+    if (e.target.classList.contains('pixel') && e.target.style.backgroundColor == '') {
         e.target.style.backgroundColor = 'rgb('+randomRGB()+','+randomRGB()+', '+randomRGB()+')';
+    } else {
+        darkenColor(e)
     }
+}
+// Divides individual colors to darken them over reiterated interactions
+function darkenColor(e) {
+    // Store regular expression groups into an array for easy data access
+    let lastColor = Array.from(/rgb\((\d*), (\d*), (\d*)\)/.exec(e.target.style.backgroundColor));
+    let colorRed = Math.floor(lastColor[1] / 1.5);
+    let colorGreen = Math.floor(lastColor[2] / 1.5);
+    let colorBlue = Math.floor(lastColor[3] / 1.5);
+    e.target.style.backgroundColor = `rgb(${colorRed}, ${colorGreen}, ${colorBlue})`;
 }
 
 // Use document fragment
@@ -31,7 +43,7 @@ function drawPixels(amount) {
         const pixelDiv = document.createElement('div');
         pixelDiv.style.height = pixelSize;
         pixelDiv.style.width = pixelSize;
-        pixelDiv.classList.add('pixel')
+        pixelDiv.classList.add('pixel');
         fragment.appendChild(pixelDiv);
     }
     pixelContainer.replaceChildren(fragment);
